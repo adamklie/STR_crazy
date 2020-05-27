@@ -12,10 +12,9 @@ class SNPDataset(data.Dataset):
             geno_file
             pheno_file
         """
-        self.genotypes = pd.read_csv("../../datasets")
-        self.file = geno_file
-        self.labels = labels
-        self.labels2 = labels2
+        self.genotypes = pd.read_csv(geno_file, index_col=0)
+        self.phenotypes = pd.read_csv(pheno_file, index_col=0)
+        self.list_ids = self.phenotypes.index
 
     def __len__(self):
         return len(self.list_ids)
@@ -23,22 +22,17 @@ class SNPDataset(data.Dataset):
     def __getitem__(self, index):
         """Returns one data pair (genotypes and label)."""
         ID=self.list_ids[index]
+        
         #load data
-        with open(self.file) as csvfile:
-            file = csv.reader(csvfile)  # read in genotypes
-            for row in file:
-                if row[1]==ID:
-                    X=torch.from_numpy(np.array([int(x) for x in row[6:]])).float()
-                    X=torch.unsqueeze(X,0)
-            y=torch.from_numpy(np.array(self.labels[ID]))
-            z=torch.from_numpy(np.array(self.labels2[ID]))
-            return X,y,z
+        X = torch.from_numpy(np.array(self.genotypes.loc[ID].values)).float()
+        y = torch.from_numpy(np.array(self.phenotypes.loc[ID].values))
+        return X,y
 
 
-def get_loader(geno_file,ids,labels,batch_size, shuffle, num_workers):
+def get_loader(genotype_file, phenotype_file, batch_size, shuffle, num_workers):
     """Returns torch.utils.data.DataLoader for geno dataset."""
 
-    geno = Dataset(geno_file=geno_file,list_ids=ids,labels=labels,labels2=labels)
+    geno = SNPDataset(geno_file=genotype_file, pheno_file=phenotype_file)
     params = {'batch_size': batch_size, 'shuffle': shuffle,'num_workers': num_workers}
     data_loader = torch.utils.data.DataLoader(dataset=geno,**params)
     return data_loader

@@ -89,7 +89,7 @@ class DiddyKongRacing(nn.Module):
         
     def forward(self,x):
         print("Foreword: forward or backward is just a matter of perspective")
-        print(x.size())
+        #print(x.size())
         for i in range(len(self.hotTopVolcano)):
             x = self.hotTopVolcano[i](x)
         
@@ -111,7 +111,7 @@ class DonkeyKong64(nn.Module):
             firingCoconuts = [nn.Linear(diddyKong, donkeyKong)]
         else:
             firingCoconuts = [nn.Linear(diddyKong, donkeyKong), nn.BatchNorm1d(donkeyKong), nn.Dropout(krool), nn.ReLU(inplace=True)]
-            print(firingCoconuts)
+            #print(firingCoconuts)
         
         self.goldBanana = nn.Sequential(*firingCoconuts)
         print("Initializing Weights...")
