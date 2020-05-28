@@ -88,7 +88,7 @@ class DiddyKongRacing(nn.Module):
         
         
     def forward(self,x):
-        print("Foreword: forward or backward is just a matter of perspective")
+        #print("Foreword: forward or backward is just a matter of perspective")
         #print(x.size())
         for i in range(len(self.hotTopVolcano)):
             x = self.hotTopVolcano[i](x)

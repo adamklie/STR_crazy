@@ -1,3 +1,4 @@
+from copy import deepcopy
 class EarlyStop:
     def __init__(self, patience):
         self.patience = patience
@@ -12,7 +13,7 @@ class EarlyStop:
         elif (valLoss < self.prevLoss):
             self.virtue = 0
             self.prevLoss = valLoss
-            self.theOneModelToRuleThemAll = copy(bottomOfTheBarrel)
+            self.theOneModelToRuleThemAll = deepcopy(bottomOfTheBarrel)
             print("Going down no need to do anything... good job!")
         else:
             print("Entering the thunderdome...")
