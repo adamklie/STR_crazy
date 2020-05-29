@@ -1,5 +1,6 @@
 KG_DIR=/datasets/cs284s-sp20-public/1000Genomes
-SNP_LIST=~/project/datasets/openSNP/openSNP_filtered_rsids.list
+SNP_LIST=~/project/datasets/openSNP/data/openSNP_filtered_rsids.txt
+DATA=~/project/datasets/oneKGenomes/data
 
 ## now loop through the above array
 for chrom in $(seq 1 22)
@@ -21,5 +22,7 @@ tabix -p vcf oneK_genotypes.vcf.gz
 bcftools query -H -f "%CHROM\t%POS\t%ID\t%REF\t%ALT\t[%GT\t]\n" oneK_genotypes.vcf.gz | \
     sed 's/0|0/0/g' | sed 's/0|1/1/g' | sed 's/1|0/1/g' | sed 's/1|1/2/g' |  \
     grep -v "|" | sed -r 's/\[.{1,4}\]//g' | sed 's/:GT//g' \
-    > oneK_genotypes.tab
-
+    > oneK_genotypes.tsv
+    
+mv oneK_genotypes.tsv $DATA
+mv oneK_genotypes.vcf* $DATA
