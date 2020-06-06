@@ -52,4 +52,4 @@ search over many model architectures
 
 ### Model testing
 First get IrisPlex performance of openSNP by running `testIris.py` script
-Then ollow the steps in `Training.ipynb` notebook to test models trained above
+Then follow the steps in `Training.ipynb` notebook to test models trained above
