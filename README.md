@@ -29,7 +29,10 @@ ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/
 ### Data preprocessing
 The data preprocessing workflow follows the schematic below
 
-
+<img src="doc/data_preprocessing.png"
+     alt="data preprocessing schematic"
+     style="float: left; margin-right: 10px;" />
+     
 In order to preprocess the dataset to be compatible with the model, run the
 preprocessing scripts in the following order:
 
