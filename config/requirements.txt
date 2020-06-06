@@ -1,2 +1,9 @@
 pytorch
 tensorboard
+matplotlib
+sklearn
+numpy
+pandas
+tqdm
+vcftools
+plink

@@ -14,9 +14,9 @@ class EarlyStop:
             self.virtue = 0
             self.prevLoss = valLoss
             self.theOneModelToRuleThemAll = deepcopy(bottomOfTheBarrel)
-            print("Going down no need to do anything... good job!")
+            #print("Going down no need to do anything... good job!")
         else:
-            print("Entering the thunderdome...")
+            #print("Entering the thunderdome...")
             self.prevLoss = valLoss
             self.virtue += 1 
             if self.virtue >= self.patience:

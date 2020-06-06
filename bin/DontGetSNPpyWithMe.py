@@ -74,15 +74,15 @@ class DiddyKongRacing(nn.Module):
         self.jetPacksAndPeanutPistols = nn.ModuleList() #multi-task output layers
         
         
-        print("A ba ba boua ba ba: Layers are initializing...")
+        #print("A ba ba boua ba ba: Layers are initializing...")
         for i in range(len(self.getWide) - 1):
-            print("Adding linear layer from {} nodes to {} nodes...".format(self.getWide[i], self.getWide[i+1]))
+            #print("Adding linear layer from {} nodes to {} nodes...".format(self.getWide[i], self.getWide[i+1]))
             self.hotTopVolcano.append(DonkeyKong64(self.getWide[i],self.getWide[i+1], dropout, False))
             
         #Add in multitask layers here
-        print("The angry aztec sends his llama regards: Multi-task layers initializing...")
+        #print("The angry aztec sends his llama regards: Multi-task layers initializing...")
         for i in range(len(multitaskOutputs)):
-            print("Adding multi-task linear layer from {} nodes to {} nodes".format(self.getWide[len(self.getWide)-1], multitaskOutputs[i]))
+            #print("Adding multi-task linear layer from {} nodes to {} nodes".format(self.getWide[len(self.getWide)-1], multitaskOutputs[i]))
             self.jetPacksAndPeanutPistols.append(DonkeyKong64(self.getWide[len(self.getWide) - 1], multitaskOutputs[i], dropout, True))
             
         
@@ -114,7 +114,7 @@ class DonkeyKong64(nn.Module):
             #print(firingCoconuts)
         
         self.goldBanana = nn.Sequential(*firingCoconuts)
-        print("Initializing Weights...")
+        #print("Initializing Weights...")
         self.goldBanana.apply(PhotoCopierInitialize)
         
     def forward(self, x):

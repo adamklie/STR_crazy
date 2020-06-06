@@ -1,0 +1,4 @@
+﻿Model,Num hidden layers,Layer widths,Train Acc,Val Acc,Train Loss,Val Loss,Early Stopping Epoch
+1,5,"512,512,512,512,512",,,,,
+2,5,"256,256,256,256,128",,,,,
+3,3,"1024,256,32",,,,,

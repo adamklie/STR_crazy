@@ -1,15 +1,9 @@
 """
 Adam Klie
 05/27/2020
-
-Input: 
-    - 
-Output: 
-    - 
-    - 
-Notes:
-    - 
+Extract a test set and labels from openSNP for input into neural network
 """
+
 import os
 import pandas as pd
 import argparse
@@ -19,20 +13,16 @@ tqdm.pandas()
 
 
 #Function to z-score SNPs
-def z_score(df): 
-    return (df-df.mean())/df.std()
+def z_score(x): 
+    return (x-x.mean())/x.std()
 
 
 # Main function
 def main(args):
     
-    # Load in genotypes from oneK_genotypes.sh output
-    print("Reading in genotype file")
-    oneK_genotypes = pd.read_csv(args.genotype_file, sep='\t')
-
     # Format dataset and z-score
-    print("Z-scoring SNPs")
-    data = oneK_genotypes.set_index("ID").loc[:, "HG00096":"NA21144"].progress_apply(z_score, axis=1)
+    print("Reading in genotype file and Z-scoring SNPs")
+    data = pd.read_csv(args.genotype_file, sep='\t').drop_duplicates("ID").set_index("ID").loc[:, "HG00096":"NA21144"].progress_apply(z_score, axis=1)
     data = data.replace(np.nan, 0)
     
     # Reorder to match
@@ -54,13 +44,13 @@ def main(args):
     
     print("Writing to sets")    
     # Write to a file
-    train.to_csv('{}/train_set.csv'.format(args.output_dir), index=True)
-    val.to_csv('{}/val_set.csv'.format(args.output_dir), index=True)
+    train.to_pickle('{}/train_set.pickle'.format(args.output_dir))
+    val.to_pickle('{}/val_set.pickle'.format(args.output_dir))
     
     # Write log info
     with open("{}/extractTrainSet.log".format(args.log_dir), 'w') as filename:
-        filename.writelines("Train matrix: {} X {}\n".format(train.shape[1], train.shape[0]))
-        filename.writelines("Val matrix: {} X {}\n".format(val.shape[1], val.shape[0]))
+        filename.writelines("Train dimensions: {} X {}\n".format(train.shape[1], train.shape[0]))
+        filename.writelines("Val dimensions: {} X {}\n".format(val.shape[1], val.shape[0]))
         
     
 if __name__ == '__main__':

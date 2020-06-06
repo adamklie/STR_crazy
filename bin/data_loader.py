@@ -19,16 +19,16 @@ class SNPDataset(data.Dataset):
         
         self.phenotypes = pd.read_csv(pheno_file, index_col=0)
         self.list_ids = self.phenotypes.index
-
+              
     def __len__(self):
         return len(self.list_ids)
-
+   
     def __getitem__(self, index):
         """Returns one data pair (genotypes and label)."""
         ID=self.list_ids[index]
         
         #load data
-        X = torch.from_numpy(np.array(self.genotypes.loc[ID].values)).float()
+        X = torch.from_numpy(np.array(self.genotypes.loc[str(ID)].values)).float()
         y = torch.from_numpy(np.array(self.phenotypes.loc[ID].values))
         return X,y
 

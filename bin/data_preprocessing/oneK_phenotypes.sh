@@ -1,6 +1,13 @@
-KG_DIR=/datasets/cs284s-sp20-public/1000Genomes
-SNP_LIST=~/project/datasets/iris_rsids.txt
-DATA=~/project/datasets/oneKGenomes/data
+"""
+Adam Klie
+05/22/2020
+Code to extract an IrisPlex SNPs from 1000Genomes vcf files
+"""
+
+
+KG_DIR=/datasets/cs284s-sp20-public/1000Genomes  # Path to 1000Genomes vcf (per chromosome)
+SNP_LIST=~/project/datasets/iris_rsids.txt  # Path to IrisPlex SNP list (one per line)
+DATA=~/project/datasets/oneKGenomes/data  # Path to directory to house output
 
 declare -a arr=(15 14 11 6 5)
 

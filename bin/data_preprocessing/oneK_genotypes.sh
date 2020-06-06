@@ -1,8 +1,13 @@
-KG_DIR=/datasets/cs284s-sp20-public/1000Genomes
-SNP_LIST=~/project/datasets/openSNP/data/openSNP_filtered_rsids.txt
-DATA=~/project/datasets/oneKGenomes/data
+"""
+Adam Klie
+05/22/2020
+Code to extract all SNPs found in openSNP from 1000Genomes vcf
+"""
 
-## now loop through the above array
+KG_DIR=/datasets/cs284s-sp20-public/1000Genomes  # Path to 1000Genomes vcf (per chromosome)
+SNP_LIST=~/project/datasets/openSNP/data/openSNP_filtered_rsids.txt  # Path to SNP list (one per line from openSNP)
+DATA=~/project/datasets/oneKGenomes/data  # Path to directory to house output
+
 for chrom in $(seq 1 22)
 do
     echo -e "Adding SNPs from chromosome $chrom"

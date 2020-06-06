@@ -2,14 +2,8 @@
 Adam Klie
 05/27/2020
 Predicting phenotypes of 1000Genomes individuals using IrisPlex model
-Input: 
-    - 
-Output: 
-    - 
-    - 
-Notes:
-    - 
 """
+
 import os
 import pandas as pd
 import argparse
