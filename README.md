@@ -5,4 +5,4 @@ A neural network approach to polygenic risk scoring (PRS)
 pip install -r requirement.txt
 ```
 
-**Kabuki buki do where are you?** 
+**Kabuki duki do where are you?** 
