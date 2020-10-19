@@ -1,4 +1,4 @@
-# STR Crazy CSE 284 Final Project
+# STR Crazy
 ## Prediction of eye color using a feedforward neural network
 
 ### Requirements
